@@ -49,12 +49,42 @@ test('getUrlsFromHtml relative', () =>{
     const inputHTMLBody = `
     <html>
         <body>
-            <a href = "https://blog.boot.dev/"> Boot.dev Blog  </a>
+            <a href = "/path/"> Boot.dev Blog  </a>
+        </body>
+    </html>
+    `
+    const inputBaseURL = "https://blog.boot.dev"
+    const actual = getUrlsFromHtml(inputHTMLBody, inputBaseURL)
+    const expected = ['https://blog.boot.dev/path/']
+    expect(actual).toEqual(expected)
+})
+
+test('getUrlsFromHtml both', () =>{
+    const inputHTMLBody = `
+    <html>
+        <body>
+            <a href = "https://blog.boot.dev/path1/"> Boot.dev Blog 1  </a>
+            <a href = "https://blog.boot.dev/path2/""> Boot.dev Blog 2 </a>
         </body>
     </html>
     `
     const inputBaseURL = "https://blog.boot.dev/"
     const actual = getUrlsFromHtml(inputHTMLBody, inputBaseURL)
-    const expected = ['https://blog.boot.dev/']
+    const expected = ['https://blog.boot.dev/path1/','https://blog.boot.dev/path2/']
+    expect(actual).toEqual(expected)
+})
+
+// bade cases 
+test('getUrlsFromHtml non url case', () =>{
+    const inputHTMLBody = `
+    <html>
+        <body>
+            <a href = "nonurl"> non url  </a>
+        </body>
+    </html>
+    `
+    const inputBaseURL = "https://blog.boot.dev"
+    const actual = getUrlsFromHtml(inputHTMLBody, inputBaseURL)
+    const expected = []
     expect(actual).toEqual(expected)
 })
