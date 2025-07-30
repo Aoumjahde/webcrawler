@@ -2,7 +2,7 @@ const {JSDOM} = require('jsdom')
 
 async function   crawlPage(baseURl, currentURL, pages){
 
-    console.log(`actively crawling: ${currentURL}`)
+    // console.log(`actively crawling: ${currentURL}`)
 
     const baseURLObj = new URL(baseURl)
     const currentURLObj = new URL(currentURL)
@@ -18,7 +18,7 @@ async function   crawlPage(baseURl, currentURL, pages){
         return pages
     }
     pages[normalizedCurrentURL] = 1
-    console.log(`actively crawling: ${currentURL}`)
+    // console.log(`actively crawling: ${currentURL}`)
 
     
     try {
