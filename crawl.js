@@ -7,7 +7,7 @@ async function   crawlPage(baseURl, currentURL, pages){
     const baseURLObj = new URL(baseURl)
     const currentURLObj = new URL(currentURL)
 
-    if (baseURLObj.hostname !== currentURL.hostname){
+    if (baseURLObj.hostname !== currentURLObj.hostname){
         return pages
     }
 
@@ -94,6 +94,6 @@ function normalizaURL(urlString){
 
 module.exports = {
     normalizaURL,
-    getUrlsFromHtml,
+    getUrlsFromHtml,//
     crawlPage
 }
