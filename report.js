@@ -3,56 +3,37 @@ const { url } = require('inspector');
 const path = require('path');
 
 function printReport(pages, filename = 'pages.csv'){
-    console.log("==========")
-    console.log("Report")
-    console.log("==========")
+    // console.log("==========")
+    // console.log("Report")
+    console.log("=================")
+    console.log("Please Waite ...!")
     const sordtedPages = sortPages(pages)
+    
 
-    for( sortedPage of sordtedPages){
-        const url = sortedPage[0]
-        const hits = sortedPage[1]
-        console.log(`Found ${hits} pages to page ${url}`)
-
-    }
-    console.log("==========")
-    console.log("Report")
-    console.log("==========")
     const csvPath = path.join(__dirname, filename)
-    
-    let csvContent = `*${hits}* to :   ${url}`
-    
-    for (let i = 0; i < pages.length; i++) {
-      const page = pages[i];
-      const escapedUrl = page.hits.replace(/"/g, '""')
-      const escapedText = page.url.replace(/"/g, '""')
-  
-      csvContent += `"${escapedUrl}","${escapedText}"`
-      if (i < pages.length - 1) csvContent += '\n'
+    let csvContent = 'hits ,url\n'
+    for( sortedPage of sordtedPages){
+        // const csvPath = path.join(__dirname, filename)
+        // let csvContent = 'hits ,url\n'
+
+        const url = sortedPage[0]
+        const hits = sortedPage[0]
+
+        // console.log(`Found ${hits} pages to page ${url}`) --> ** Option if you want to print in terminal **
+        const escapedUrl = hits
+        const escapedText = url
+
+        csvContent += `"Title: ${escapedUrl}" of LINK:  "${escapedText}\n"`
+        // if (i < pages.length - 1){csvContent += '\n'}
+
     }
-    
     fs.writeFileSync(csvPath, csvContent)
+    console.log("The file was Created successfly!")
 
     return csvPath
+
 }
 
-// function exportpagesToCSV(pages, filename = 'pages.csv'){
-//     // const csvPath = path.join(__dirname, filename);
-    
-//     // let csvContent = `*${hits}* to :   ${url}`;
-    
-//     // for (let i = 0; i < pages.length; i++) {
-//     //   const page = pages[i];
-//     //   const escapedUrl = page.hits.replace(/"/g, '""');
-//     //   const escapedText = page.url.replace(/"/g, '""');
-  
-//     //   csvContent += `"${escapedUrl}","${escapedText}"`;
-//     //   if (i < pages.length - 1) csvContent += '\n';
-//     // }
-    
-//     // fs.writeFileSync(csvPath, csvContent);
-//     return csvPath;
-      
-//   }
 
 
 
